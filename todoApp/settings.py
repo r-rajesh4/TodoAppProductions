@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 import os
 from pathlib import Path
 import dj_database_url
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,12 +22,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-a_u30hx=6hl_4!=k_41-6_uv1pzq5_2fp(e-lqlj!5fj4(_0vg'
+SECRET_KEY = config("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config("DEBUG", cast=bool)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = 'todoapp-4og2.onrender.com'
 
 
 # Application definition
@@ -100,7 +101,7 @@ DATABASES = {
 }
     }
 
-DATABASES["default"]=dj_database_url.parse('postgresql://todo_db_rq67_user:c7lymYfaV3JUmcY64faENhFNKZ3Xo3ci@dpg-cv5f9htds78s739d6750-a.oregon-postgres.render.com/todo_db_rq67')
+DATABASES["default"]=dj_database_url.parse(config("DATABASE_URL"))
 
 
 
